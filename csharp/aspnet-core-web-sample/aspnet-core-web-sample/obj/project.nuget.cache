@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "EkIHb69SRHh22JCPQiaFdxeQJ2JxC06sQV2+yqpY+FKI82p9Ee143NHrto9ep5g3Fv2Brdn5sStRKW/KLiR7DQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\chrisw\\source\\repos\\aspnet-core-web-sample\\aspnet-core-web-sample\\aspnet-core-web-sample.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\chrisw\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.15.1\\microsoft.visualstudio.azure.containers.tools.targets.1.15.1.nupkg.sha512",
+    "C:\\Users\\chrisw\\.nuget\\packages\\microsoft.netcore.app.host.win-arm64\\6.0.5\\microsoft.netcore.app.host.win-arm64.6.0.5.nupkg.sha512"
+  ],
+  "logs": []
+}
