@@ -14,15 +14,9 @@ name: "CodeQL"
 on:
   push:
     branches: [ main ]
-    paths:
-      - csharp/**/*
-      - .github/workflows/codeql-csharp.yml
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ main ]
-    paths:
-      - csharp/**/*
-      - .github/workflows/codeql-csharp.yml
   schedule:
     - cron: '31 19 * * 2'
 
