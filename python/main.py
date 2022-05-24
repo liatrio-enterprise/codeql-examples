@@ -1,7 +1,5 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_restful import Api, Resource
-
-import traceback
 
 app = Flask(__name__)
 
@@ -10,13 +8,8 @@ api = Api(app)
 class HelloWorld(Resource):
   
   def get(self):
-    try:
-      data={"data":"Hello World"}
-      if (data == {"data":"Hello World"}):
-        raise Exception("Sample Secure Info Leak")
-      return data
-    except Exception as e:
-      return traceback.format_exc()
+    data={"data":"Hello World"}
+    return jsonify(data)
 
 api.add_resource(HelloWorld,'/hello')
 
