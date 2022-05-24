@@ -8,6 +8,7 @@ app = Flask(__name__)
 api = Api(app)
 
 class HelloWorld(Resource):
+  
   def get(self):
     try:
       data={"data":"Hello World"}
