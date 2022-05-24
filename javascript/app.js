@@ -1,14 +1,21 @@
-const http = require('http');
-
-const hostname = '127.0.0.1';
+const express = require('express')
+const app = express()
 const port = 3000;
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World');
+const db = require('../db');
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.get("/students", (request, response) => {
+  const query = 'SELECT * FROM Students WHERE student_id = ?'
+  db.query(query, [2], (err, rows) => {
+    if(err) throw err;
+    response.json({data:rows});
+  });
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
