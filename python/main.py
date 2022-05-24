@@ -11,8 +11,8 @@ class HelloWorld(Resource):
   def get(self):
     try:
       data={"data":"Hello World"}
-      if (data != {"data":"Hello World"}):
-        raise Exception("")
+      if (data == {"data":"Hello World"}):
+        raise Exception("Sample Secure Info Leak")
       return data
     except Exception as e:
       return traceback.format_exc()
