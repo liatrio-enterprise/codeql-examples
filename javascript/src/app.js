@@ -2,13 +2,13 @@ const express = require('express')
 const app = express()
 const port = 3000;
 
-const db = require('./db');
+const db = require('../db');
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.post("/students", (request, response) => {
+app.get("/students", (request, response) => {
   const data = request.body;
   const query = `SELECT * FROM Students WHERE student_age = (${data.student_age})`;
   db.query(query, (err, rows) => {
