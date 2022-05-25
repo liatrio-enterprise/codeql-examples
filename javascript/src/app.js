@@ -9,8 +9,9 @@ app.get('/', (req, res) => {
 })
 
 app.get("/students", (request, response) => {
-  const query = 'SELECT * FROM Students WHERE student_id = ?'
-  db.query(query, [2], (err, rows) => {
+  const data = request.body;
+  const query = `SELECT * FROM Students WHERE id = (${data.id})`;
+  db.query(query, (err, rows) => {
     if(err) throw err;
     response.json({data:rows});
   });
