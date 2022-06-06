@@ -11,3 +11,9 @@ services:
     restart: always
     expose:
       - "3306"
+
+  ruby:
+    build: ./ruby
+    restart: always
+    ports:
+      - "3000:3000"

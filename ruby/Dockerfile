@@ -4,7 +4,7 @@ COPY . .
 
 RUN bundle install && \
   rails db:migrate && \
-  rails runner ./seed-db.rb
+  rails runner db/seeds.rb
 
 EXPOSE 3000/tcp
 
