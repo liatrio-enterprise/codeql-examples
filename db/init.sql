@@ -1,10 +1,10 @@
-CREATE TABLE IF NOT EXISTS Student(
-  student_id INT PRIMARY KEY AUTO_INCREMENT, 
-  student_name VARCHAR(60), 
-  student_age INT
+CREATE TABLE IF NOT EXISTS Students(
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(60),
+  age INT
 );
 
-INSERT INTO Student(student_name, student_age)
+INSERT INTO Students(name, age)
 VALUES
   ("Calvin Wai", 21),
   ("Chris Warren", 23);
