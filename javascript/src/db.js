@@ -7,7 +7,7 @@ const query = async (...args) => {
         pool = mysql.createPool({
             host: "localhost",
             user: "root",
-            password: "root",
+            password: process.env.DB_PASSWORD,
             database: "sample-app",
         });
     }
