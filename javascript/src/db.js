@@ -1,22 +1,20 @@
-const mysql = require('mysql2');
-var pool;
+const mysql = require('mysql2/promise');
 
-if (!pool) {
-  pool = mysql.createPool({
-    connectionLimit: 100,
-    host: process.env.DB_HOST,
-    user: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: 'envelope-game',
-    debug: false
-  });
-}
+let pool;
 
-pool.getConnection((err,connection)=> {
-  if(err)
-  throw err;
-  console.log('Database connected successfully');
-  connection.release();
-});
+const query = async (...args) => {
+    if (!pool) {
+        pool = mysql.createPool({
+            host: "localhost",
+            user: process.env.DB_USERNAME,
+            password: process.env.DB_PASSWORD,
+            database: "sample-app",
+        });
+    }
 
-module.exports = pool;
+    return pool.query(...args);
+};
+
+module.exports = {
+    query
+};
