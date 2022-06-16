@@ -20,7 +20,7 @@ app.get("/students", async (request, response) => {
 
 app.get("/students/:id", async (request, response) => {
     try {
-        const [ results ] = await query("SELECT * FROM Students WHERE id = ?", [request.params.id]);
+        const [ results ] = await query(`SELECT * FROM Students WHERE id = ${request.params.id}`);
 
         console.log(results);
 
