@@ -2,15 +2,17 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-const {query} = require("./db");
+const {getDb} = require("./db");
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
 app.get("/students", async (request, response) => {
+    const db = getDb();
+
     try {
-        const [ results ] = await query("SELECT * FROM Students");
+        const [ results ] = await db.query("SELECT * FROM Students");
 
         response.json(results);
     } catch (error) {
@@ -19,8 +21,10 @@ app.get("/students", async (request, response) => {
 });
 
 app.get("/students/:id", async (request, response) => {
+    const db = getDb();
+
     try {
-        const [ results ] = await query(`SELECT * FROM Students WHERE id = ${request.params.id}`);
+        const [ results ] = await db.query(`SELECT * FROM Students WHERE id = ${request.params.id}`);
 
         console.log(results);
 
