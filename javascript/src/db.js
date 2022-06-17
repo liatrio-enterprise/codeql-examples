@@ -4,7 +4,7 @@ let pool;
 
 const createPool = () => mysql.createPool({
     host: "localhost",
-    user: process.env.DB_USERNAME,
+    user: "root",
     password: "root",
     database: "sample-app",
 });
