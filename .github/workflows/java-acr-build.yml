@@ -1,10 +1,9 @@
 name: ACR Build
 on:
   push:
-    branches: [ main, acr-java-build ]
-  pull_request:
-    # The branches below must be a subset of the branches above
     branches: [ main ]
+  workflow_dispatch: {}
+
 jobs:
   build:
     runs-on: [self-hosted, caf, prod]
@@ -21,4 +20,4 @@ jobs:
           repository: codeql-examples
           folder: ./java
           dockerfile: Dockerfile 
-          branch: acr-java-build
+          branch: ${{ github.ref.name }}
