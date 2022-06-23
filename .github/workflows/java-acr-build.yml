@@ -18,7 +18,7 @@ jobs:
           tenant: ${{ secrets.tenant }}
           registry: ${{ secrets.registry }}
           image: javatest
-          repository: ${{ secrets.repository }}
+          repository: codeql-examples
           folder: ./java
           dockerfile: Dockerfile 
           branch: acr-java-build
