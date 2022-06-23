@@ -10,6 +10,19 @@ jobs:
     runs-on: ubuntu-latest #[self-hosted, caf, prod]
     steps:
       - uses: actions/checkout@v2
+      
+      - run: |
+          REPO_URL="https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable"
+          source /etc/os-release
+          sh -c "echo 'deb ${REPO_URL}/x${NAME}_${VERSION_ID}/ /' > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list"
+          wget -qnv https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/x${NAME}_${VERSION_ID}/Release.key -O Release.key
+          apt-key add Release.key
+          
+      - run: |
+          install_packages=(podman buildah skopeo)
+          apt-get update
+          apt-get -y install ${install_packages[@]}
+          mkdir -p /etc/containers
      
       - name: Buildah Action
         id: build-image
