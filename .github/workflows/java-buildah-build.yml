@@ -33,6 +33,8 @@ jobs:
           context: ./java
           containerfiles: |
             ./java/Dockerfile
+          extra-args: |
+            --security-opt apparmor=unconfined
             
       - name: Push To DockerHub
         id: push-to-dockerhub
