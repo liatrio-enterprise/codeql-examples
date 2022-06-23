@@ -1,0 +1,24 @@
+name: ACR Build
+on:
+  push:
+    branches: [ main, acr-java-build ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: [self-hosted, caf, prod]
+    steps:
+      - name: ACR build
+        id: acr
+        uses: azure/acr-build@v1
+        with:
+          service_principal: ${{ secrets.service_principal }}
+          service_principal_password: ${{ secrets.service_principal_password }}
+          tenant: ${{ secrets.tenant }}
+          registry: ${{ secrets.registry }}
+          image: javatest
+          repository: ${{ secrets.repository }}
+          folder: ./java
+          dockerfile: Dockerfile 
+          branch: acr-java-build
