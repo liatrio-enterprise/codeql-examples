@@ -17,10 +17,10 @@ jobs:
         with:
           image: javatest
           tags: v1 ${{ github.sha }}
+          context: ./java
           containerfiles: |
             ./java/Dockerfile
-          build-args: |
-            some_arg=some_value
+            
       - name: Push To DockerHub
         id: push-to-dockerhub
         uses: redhat-actions/push-to-registry@v2
