@@ -9,6 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest #[self-hosted, caf, prod]
     steps:
+      - uses: actions/checkout@v2
      
       - name: Buildah Action
         id: build-image
