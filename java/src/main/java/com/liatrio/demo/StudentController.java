@@ -23,8 +23,9 @@ public class StudentController {
 
     @GetMapping("/students/{id}")
     public Student getById(@PathVariable("id") Long id) {
-        System.out.println(id);
-        return jdbcTemplate.queryForObject("SELECT * FROM Students WHERE id = " + id, BeanPropertyRowMapper.newInstance(Student.class));
+        String query = "SELECT * FROM Students WHERE id = " + id;
+
+        return jdbcTemplate.queryForObject(query, BeanPropertyRowMapper.newInstance(Student.class));
     }
 
     @PostMapping("/students")
