@@ -1,0 +1,30 @@
+name: ACR Build
+on:
+  push:
+    branches:
+      - buildah-build-example
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: [self-hosted, caf, prod]
+    steps:
+      - name: Buildah Action
+        id: build-iamge
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: javatest
+          tags: v1 ${{ github.sha }}
+          containerfiles: |
+            ./Containerfile
+          build-args: |
+            some_arg=some_value
+      - name: Push To DockerHub
+        id: push-to-dockerhub
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ${{ steps.build-image.outputs.image }}
+          tags: ${{ steps.build-image.outputs.tags }}
+          registry: docker.io/mlphilli
+          username: mlphilli
+          password: ${{ secrets.REGISTRY_PASSWORD }}
