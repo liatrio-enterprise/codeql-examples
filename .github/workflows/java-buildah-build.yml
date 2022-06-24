@@ -34,7 +34,8 @@ jobs:
           containerfiles: |
             ./java/Dockerfile
           extra-args: |
-            --security-opt=["apparmor=unconfined","seccomp=unconfined"]
+            --security-opt="apparmor=unconfined"
+            --security-opt="seccomp=unconfined"
             
       - name: Push To DockerHub
         id: push-to-dockerhub
