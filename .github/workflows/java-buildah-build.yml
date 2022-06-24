@@ -33,7 +33,7 @@ jobs:
           context: ./java
           containerfiles: |
             ./java/Dockerfile
-          extra-args: |
+          build-args: |
             --security-opt="apparmor=unconfined"
             --security-opt="seccomp=unconfined"
             
