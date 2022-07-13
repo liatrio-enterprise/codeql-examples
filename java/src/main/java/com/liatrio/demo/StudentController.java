@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.SecureRandom;
 import java.util.List;
 
 @RestController
@@ -22,13 +23,17 @@ public class StudentController {
 
     @GetMapping("/students/{id}")
     public Student getById(@PathVariable("id") Long id) {
-        System.out.println(id);
-        return jdbcTemplate.queryForObject("SELECT * FROM Students WHERE id = ?", BeanPropertyRowMapper.newInstance(Student.class), id);
+        String query = "SELECT * FROM Students WHERE id = " + id;
+
+        return jdbcTemplate.queryForObject(query, BeanPropertyRowMapper.newInstance(Student.class));
     }
 
     @PostMapping("/students")
     @ResponseStatus(HttpStatus.CREATED)
     public void createStudent(@RequestBody Student student) {
-        jdbcTemplate.update("INSERT INTO Students (name, age) VALUES (?, ?)", student.getName(), student.getAge());
+        SecureRandom secureRandom = new SecureRandom();
+        secureRandom.setSeed(12345L);
+
+        jdbcTemplate.update("INSERT INTO Students (id, name, age) VALUES (?, ?, ?)", secureRandom.nextInt(), student.getName(), student.getAge());
     }
 }
